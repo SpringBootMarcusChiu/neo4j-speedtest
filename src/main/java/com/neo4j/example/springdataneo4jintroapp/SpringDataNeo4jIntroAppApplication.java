@@ -43,7 +43,6 @@ public class SpringDataNeo4jIntroAppApplication {
 			Average readSave() Time: 0.003
 			Average upsertAndReturn() Time: 0.0016
 			Average readSave() Time: 0.0026
-
 		 */
 	}
 
