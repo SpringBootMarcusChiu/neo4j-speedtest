@@ -1,7 +1,7 @@
-package com.neo4j.example.springdataneo4jintroapp.postruns;
+package com.neo4j.example.springdataneo4jintroapp.runs;
 
-import com.neo4j.example.springdataneo4jintroapp.domainClasses.Service;
-import com.neo4j.example.springdataneo4jintroapp.repositories.ServiceRepository;
+import com.neo4j.example.springdataneo4jintroapp.domainClasses.Service1;
+import com.neo4j.example.springdataneo4jintroapp.repositories.Service1Repository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -11,14 +11,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class SpeedTest {
+public class Service1SpeedTest {
 
     @Autowired
-    ServiceRepository serviceRepository;
+    Service1Repository service1Repository;
 
     DecimalFormat df = new DecimalFormat("#.####");
 
-    @PostConstruct
     public void test() {
         System.out.println("\nSpeedTest Start");
         int numNodes = 500;
@@ -44,15 +43,15 @@ public class SpeedTest {
     }
 
     private void testUpsertAndReturnTime(int num) {
-        List<Service> services = new ArrayList<>();
+        List<Service1> services = new ArrayList<>();
         for (int i = 0; i < num; i++) {
-            Service s = new Service("upsertAndReturn() " + i, "upsertAndReturn() " + i);
+            Service1 s = new Service1("upsertAndReturn() " + i, "upsertAndReturn() " + i);
             services.add(s);
         }
 
         long start = System.nanoTime();
-        for (Service s: services) {
-            Service t = serviceRepository.upsertAndReturn2(s);
+        for (Service1 s: services) {
+            Service1 t = service1Repository.upsertAndReturn2(s);
         }
         double elapsedTime = (double)(System.nanoTime() - start);
         double elapsedTimeSeconds = elapsedTime / 1000000000d;
@@ -60,20 +59,20 @@ public class SpeedTest {
     }
 
     private void testReadSaveTime(int num) {
-        List<Service> services = new ArrayList<>();
+        List<Service1> services = new ArrayList<>();
         for (int i = 0; i < num; i++) {
-            Service s = new Service("readSave() " + i, "readSave() " + i);
+            Service1 s = new Service1("readSave() " + i, "readSave() " + i);
             services.add(s);
         }
 
         long start = System.nanoTime();
-        for (Service s: services) {
-            Service t = serviceRepository.findByName(s.getName());
+        for (Service1 s: services) {
+            Service1 t = service1Repository.findByName(s.getName());
             if (t == null) {
-                serviceRepository.save(s);
+                service1Repository.save(s);
             } else {
                 t.setExtra(s.getExtra());
-                serviceRepository.save(t);
+                service1Repository.save(t);
             }
         }
         double elapsedTime = (double)(System.nanoTime() - start);

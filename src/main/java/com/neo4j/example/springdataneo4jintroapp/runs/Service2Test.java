@@ -1,4 +1,4 @@
-package com.neo4j.example.springdataneo4jintroapp.postruns;
+package com.neo4j.example.springdataneo4jintroapp.runs;
 
 import com.neo4j.example.springdataneo4jintroapp.domainClasses.Service2;
 import com.neo4j.example.springdataneo4jintroapp.repositories.Service2Repository;
@@ -13,7 +13,6 @@ public class Service2Test {
     @Autowired
     Service2Repository service2Repository;
 
-    @PostConstruct
     public void test2() {
         Service2 serviceA = new Service2("unique name", "Extra 1");
         Service2 serviceB = new Service2("unique name", "Extra 2");

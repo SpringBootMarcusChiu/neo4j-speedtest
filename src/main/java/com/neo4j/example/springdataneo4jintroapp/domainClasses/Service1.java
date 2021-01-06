@@ -3,14 +3,14 @@ package com.neo4j.example.springdataneo4jintroapp.domainClasses;
 import org.neo4j.ogm.annotation.NodeEntity;
 
 @NodeEntity
-public class Service extends Asset {
+public class Service1 extends Asset {
 
     String extra;
 
-    public Service() {
+    public Service1() {
     }
 
-    public Service(String name, String extra) {
+    public Service1(String name, String extra) {
         this.name = name;
         this.extra = extra;
     }
